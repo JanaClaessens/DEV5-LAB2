@@ -11,8 +11,15 @@ export default class Card {
     // to mark a card as done, we add a class .bingo__card--done to it
     // 🔥🔥🔥 TODO 5: mark or unmark (toggle) a bingo card when clicked
     console.log("Marking card as done");
-    console.log(target);
-    // hint: use class .bingo__card--done
+
+      
+    if(target.className.includes("bingo__card--done")){
+      // Niet meer doorstrepen
+      target.className = "bingo__card"
+    }else{
+      // Doorstrepen
+      target.className = target.className + " bingo__card--done"
+    }
   }
 
   render(counter) {
@@ -22,22 +29,23 @@ export default class Card {
     // </div>
     console.log("Rendering card...");
 
-    // 🔥🔥🔥 TODO3: build the HTML element and append it to the DOM
     // Build card HTML
     let card = document.createElement("div");
-    card.id = "bingo__card" + counter + 1
+    card.id = "bingo__card" + (counter + 1);
     card.dataset.number = counter + 1;
-    card.className = "bingo__card"
-    card.innerText = this.title
+    card.className = "bingo__card";
+    card.innerText = this.title;
 
     // append to bingo board
-    document.querySelector(".bingo__board").appendChild(card)
+    document.querySelector(".bingo__board").appendChild(card);
 
-    // 🔥🔥🔥 TODO4: when we click an item, we want to check for winners and we want to save the selection to storage
     card.addEventListener("click", (e) => {
-      // this.markDone(e.target);
-      // call checkWinner() on the Bingo class
-      // try to call the save() method on the Bingo class
+      // Mark card as done
+      this.markDone(e.target);
+      // Check for winners
+      Bingo.checkWinner()
+      // Save the selection to storage
+      Bingo.save()
     });
   }
 }

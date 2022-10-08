@@ -67,21 +67,28 @@ export default class Bingo {
   }
 
   static save() {
-    // 🔥🔥🔥 TODO 7
     // save the cards that are done to localstorage
     // you can simply save an array with the card numbers like [1, 6, 8]
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-    let cardsWon = [];
     console.log("Saving bingo to localstorage");
-    // let cards = document.querySelectorAll(".bingo__card--done");
+    
+    let cards = document.querySelectorAll(".bingo__card--done");
+    let cardsWon = []
 
+    
     // if there are not done cards, remove localstorage
-    // if (cards.length === 0) {
-    // remove localstorage
-    // }
+    if (cards.length === 0) {
+      // remove localstorage
+      localStorage.clear();
+    }
 
-    // save a selection like [1, 7, 8] to localstorage item "bingo"
-    // you might want to check out how JSON.stringify() works
+    for(let i = 0; i < cards.length; i++){
+      let number = cards[i].dataset.number
+      cardsWon.push(number)
+    }
+
+    console.log(cardsWon)
+    localStorage.setItem('bingo', cardsWon);
   }
 
   static load() {

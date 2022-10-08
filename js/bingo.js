@@ -49,7 +49,7 @@ export default class Bingo {
       // create a new card
       const card = new Card(this.cards[i]);
       // render the card to the screen
-      card.render();
+      card.render(i);
     }
   }
 

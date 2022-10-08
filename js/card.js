@@ -18,12 +18,20 @@ export default class Card {
   render(counter) {
     // rendering the card to the screen is done by building up a string of HTML
     // after that, we append the HTML to the DOM - check the index.html file to see what structure to use
+    // <div class="bingo__card" data-number="1" id="bingo__card1">
+    // </div>
     console.log("Rendering card...");
 
     // 🔥🔥🔥 TODO3: build the HTML element and append it to the DOM
-    // let card = document.createElement("div");
-    // card.dataset.number = counter + 1;
-    // don't forget to append the child to to DOM
+    // Build card HTML
+    let card = document.createElement("div");
+    card.id = "bingo__card" + counter + 1
+    card.dataset.number = counter + 1;
+    card.className = "bingo__card"
+    card.innerText = this.title
+
+    // append to bingo board
+    document.querySelector(".bingo__board").appendChild(card)
 
     // 🔥🔥🔥 TODO4: when we click an item, we want to check for winners and we want to save the selection to storage
     card.addEventListener("click", (e) => {
